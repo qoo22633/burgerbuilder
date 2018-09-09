@@ -17,7 +17,7 @@ class BurgerBuilder extends Component {
             salad: 1,
             bacon: 2,
             cheese: 3,
-            meet: 0,
+            meat: 0,
         },
         totalPrice: 4
     }
@@ -71,7 +71,8 @@ class BurgerBuilder extends Component {
                 <BuildControls
                     ingredentAdded={this.addIngredientHandler}
                     ingredentRemoved={this.removeIngredientHandler}
-                    disabled={disabledInfo} />
+                    disabled={disabledInfo}
+                    price={this.state.totalPrice} />
             </Aux>
         )
     }
