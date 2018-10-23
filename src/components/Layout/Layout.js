@@ -3,6 +3,7 @@ import React from 'react';
 import Aux from '../../hoc/aux';
 import classes from './Layout.css';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
+import Logo from '../Logo/Logo';
 
 const layout = (props) => (
     <Aux>
