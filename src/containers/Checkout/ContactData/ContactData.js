@@ -33,7 +33,6 @@ class ContactData extends Component {
                     required: true
                 },
                 valid: false
-
             },
             zipCode: {
                 elementType: 'input',
@@ -44,7 +43,7 @@ class ContactData extends Component {
                 value: '',
                 validation: {
                     required: true,
-                    minLength: 8
+                    minLength: 8,
                     maxLength: 8
                 },
                 valid: false
@@ -85,8 +84,6 @@ class ContactData extends Component {
                     ]
                 },
                 value: '',
-                valid: false
-,
             },
         }
     }
@@ -119,7 +116,7 @@ class ContactData extends Component {
     }
 
     checkValidity(value, rules) {
-        let isValid = false;
+        let isValid = true;
 
         // 必須
         if (rules.required) {
@@ -171,7 +168,9 @@ class ContactData extends Component {
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value}
-                        changed={(event) => this.inputChangedHandler(event, formElement.id)} />
+                        changed={(event) => this.inputChangedHandler(event, formElement.id)}
+                        invalid={formElement.config.valid}
+                        shouldValidate={formElement.config.validation} />
                 ))}
                 <Button btnType="Success" clicked={this.orderHandler}>ORDER</Button>
             </form>
