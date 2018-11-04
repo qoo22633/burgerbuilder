@@ -54,8 +54,8 @@ class ContactData extends Component {
                 elementType: 'select',
                 elementConfig: {
                     options: [
-                        {value: 'fastest', displayValue: 'fastest'},
-                        {value: 'cheapest', displayValue: 'cheapest'}
+                        {value: 'Fastest', displayValue: 'Fastest'},
+                        {value: 'Cheapest', displayValue: 'Cheapest'}
                     ]
                 },
                 value: '',
