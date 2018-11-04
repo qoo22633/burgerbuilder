@@ -63,13 +63,23 @@ class ContactData extends Component {
         }
     }
 
+    // input入力された値をDBに保存する
     orderHandler = (event) => {
         event.preventDefault();
         this.setState({ loading: true })
-        const order = { ingredients: this.props.ingredients,
-            price: this.props.price,
+
+        // フォームに入力された内容を格納する
+        const formData = {};
+        for (let formElementIdentifier in this.state.orderForm) {
+            formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
         }
-        // alert('You continue!');
+
+        const order = {
+            ingredients: this.props.ingredients,
+            price: this.props.price,
+            orderData: formData
+        }
+
         axios.post('/orders.json', order)
             .then(response => {
                 this.setState({ loading: false })
@@ -79,6 +89,7 @@ class ContactData extends Component {
                 this.setState({ loading: false })
             });
     }
+
     // input値がかわったときに、値を更新する
     inputChangedHandler = (event, inputIdentify) => {
         const updatedOrderForm = {
@@ -101,7 +112,7 @@ class ContactData extends Component {
         }
         // inputの生成
         let form = (
-            <form>
+            <form onSubmit={this.orderHandler}>
                 {fromElementsArray.map(formElement => (
                     <Input
                         key={formElement.id}
