@@ -7,7 +7,7 @@ const input = (props) => {
     const inputClasses = [classes.InputElement]
 
     // バリデートエラーの場合クラス追加
-    if (!props.invalid && props.shouldValidate) {
+    if (!props.invalid && props.shouldValidate && props.touched) {
         inputClasses.push(classes.Invalid);
     }
 
