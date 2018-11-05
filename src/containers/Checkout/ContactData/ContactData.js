@@ -9,6 +9,7 @@ import Input from '../../../UI/Input/Input';
 class ContactData extends Component {
     state = {
         loading: false,
+        formIsValid: false,
         orderForm: {
             name: {
                 elementType: 'input',
@@ -86,6 +87,7 @@ class ContactData extends Component {
                         {value: 'cheapest', displayValue: 'Cheapest'}
                     ]
                 },
+                valid: true,
                 value: '',
             },
         }
@@ -151,7 +153,13 @@ class ContactData extends Component {
         updatedFormElement.touched = true;
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
         updatedOrderForm[inputIdentify] = updatedFormElement;
-        this.setState ({ orderForm: updatedOrderForm})
+
+        // 全てのフォームが正しいか判定する
+        let formIsValid = true;
+        for (let inputIdentifier in updatedOrderForm) {
+            formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+        }
+        this.setState ({ orderForm: updatedOrderForm, formIsValid: formIsValid })
     }
     render () {
         const fromElementsArray = [];
@@ -175,7 +183,7 @@ class ContactData extends Component {
                         touched={formElement.config.touched}
                         shouldValidate={formElement.config.validation} />
                 ))}
-                <Button btnType="Success" clicked={this.orderHandler}>ORDER</Button>
+                <Button btnType="Success" disabled={!this.state.formIsValid} clicked={this.orderHandler}>ORDER</Button>
             </form>
         )
 
