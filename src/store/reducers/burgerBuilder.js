@@ -1,5 +1,5 @@
-import * as actionTypes from './actions';
-import { ADD_INGREDIENT } from './actions';
+import * as actionTypes from '../actions/actionTypes';
+import { ADD_INGREDIENT } from '../actions/actionTypes';
 
 const initialState = {
     ingredients: {
